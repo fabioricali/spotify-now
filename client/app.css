@@ -1,0 +1,58 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-family: arial, sans-serif;
+    margin: 0;
+    text-align: center;
+    background: #222;
+    color: #eee;
+}
+
+header {
+    background: linear-gradient(128deg, #101010, #444b02, #8ec600);
+    background-size: 600% 600%;
+    animation: AnimationName 8s ease infinite;
+    color: #fff;
+    padding-top: 20px;
+    padding-bottom: 40px;
+}
+
+@-webkit-keyframes AnimationName {
+    0%{background-position:0 11%}
+    50%{background-position:100% 90%}
+    100%{background-position:0 11%}
+}
+@-moz-keyframes AnimationName {
+    0%{background-position:0 11%}
+    50%{background-position:100% 90%}
+    100%{background-position:0 11%}
+}
+@keyframes AnimationName {
+    0%{background-position:0 11%}
+    50%{background-position:100% 90%}
+    100%{background-position:0 11%}
+}
+
+header img{
+    width: 250px;
+}
+
+main {
+    padding: 40px;
+}
+
+h1 {
+    font-weight: lighter;
+    margin: 20px 0;
+}
+
+h3 {
+    margin: 20px 0;
+}
+
+p {
+    line-height: 1.5;
+}
