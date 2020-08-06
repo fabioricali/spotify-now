@@ -58,6 +58,7 @@ export default class extends Component {
                 }
             </style>
             <h3>Listening together, in different places, in the world.</h3>
+            <button onclick="${() => clearInterval(this._timerInterval)}">STOP TIMER</button>
             <div class="tracks">
                 ${this.props.tracks.map(item => h`
                     <div class="track" key="${item.track.artists + item.track.name}"> 
@@ -100,7 +101,7 @@ locations: Array(2)
         if (this.isSSR()) return;
 
         await this.fetchData();
-        this._timerInterval = setInterval(async () => this.fetchData(), 10000);
+        this._timerInterval = setInterval(async () => this.fetchData(), 2000);
     }
 
     async fetchData() {
