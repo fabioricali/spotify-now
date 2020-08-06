@@ -22,6 +22,8 @@ export default class extends Component {
             <style>
                 .tracks {
                     text-align: left;
+                    max-width: 800px;
+                    margin: auto;
                 }
                 
                 .track {
@@ -56,9 +58,13 @@ export default class extends Component {
                 .track-locations {
                     width: 50%;
                 }
+                
+                .title {
+                    margin-bottom: 40px;
+                }
             </style>
-            <h3>Listening together, in different places, in the world.</h3>
-            <button onclick="${() => clearInterval(this._timerInterval)}">STOP TIMER</button>
+            <h1 class="title">Listening together,<br>in different places, in the world.</h1>
+            <!--button onclick="${() => clearInterval(this._timerInterval)}">STOP TIMER</button-->
             <div class="tracks">
                 ${this.props.tracks.map(item => h`
                     <div class="track" key="${item.track.artists + item.track.name}"> 
@@ -70,11 +76,13 @@ export default class extends Component {
                             <div class="track-info-title">${item.track.name}</div>
                         </div> 
                         <div class="track-locations"> 
-                            ${item.locations.map(location => h`
-                                <div class="track-locations-location">
-                                    ${location.country} - ${location.city}
-                                </div>
-                            `)}
+                            <div class="track-locations-list">
+                                ${item.locations.map(location => h`
+                                    <div class="track-locations-location">
+                                        ${location.country} - ${location.city}
+                                    </div>
+                                `)}
+                            </div>
                             <div class="track-locations-distance"> 
                                 Distance: ${distance(item.locations[0].latitude, item.locations[0].longitude, item.locations[1].latitude, item.locations[1].longitude)} km
                             </div>
@@ -94,20 +102,20 @@ locations: Array(2)
      */
     async onMount() {
         this.metaTag({
-            title: 'Home',
-            description: 'My Home Page'
+            title: 'SpotifyNow - Home',
+            description: 'Listening together, in different places, in the world.'
         });
 
         if (this.isSSR()) return;
 
         await this.fetchData();
-        this._timerInterval = setInterval(async () => this.fetchData(), 2000);
+        this._timerInterval = setInterval(async () => this.fetchData(), 10000);
     }
 
     async fetchData() {
         let response = await fetch('https://listeningtogether.atspotify.com/data');
         //this.props.tracks = [];
-        this.props.tracks = (await response.json()).tracks;
+        this.props.tracks = (await response.json()).tracks.slice(0, 5);
         //console.log(this.props.tracks)
     }
 

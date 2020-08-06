@@ -10,8 +10,8 @@ export default class extends Component {
         return h`
             <div>
                  <h1>${this.props.title}</h1>
-                 <p>Doz was created to speed up the development of web applications<br/>with a simple and linear syntax 
-                 almost like writing in VanillaJS.</p>
+                 <p>This simple app shows the songs listened to simultaneously.<br>
+                 The data are taken from <a style="color: white" href="https://listeningtogether.atspotify.com" target="_blank">https://listeningtogether.atspotify.com</a>.</p>
             </div>
         `
     }
